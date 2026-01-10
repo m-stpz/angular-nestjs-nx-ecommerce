@@ -125,3 +125,16 @@ if (admin.apps.length === 0) {
 ## Adding custom scripts to NX
 
 - Add the script on the the workspace `project.json`
+
+```json
+"targets": {
+    "seed:products": {
+      "executor": "nx:run-commands",
+      "options": {
+        // if it complains about the module, pass the --compiler-options
+        "command": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' apps/api/src/seed/products.seed.ts"
+      }
+    },
+    // ...
+}
+```

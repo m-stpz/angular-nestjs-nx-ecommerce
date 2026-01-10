@@ -7,7 +7,9 @@
   "targets": {
     "seed:products": {
       "executor": "nx:run-commands",
-      "options": { "command": "ts-node seed/products.seed.ts" }
+      "options": {
+        "command": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' apps/api/src/seed/products.seed.ts"
+      }
     },
     "build": {
       "executor": "nx:run-commands",
