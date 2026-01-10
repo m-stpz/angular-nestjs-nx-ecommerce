@@ -15,6 +15,7 @@ pnpm nx serve api
 
 ```
 pnpm install firebase-admin
+pnpm install firebase
 ```
 
 ## Generating commands
