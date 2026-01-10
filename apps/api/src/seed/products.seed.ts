@@ -1,10 +1,11 @@
 import 'reflect-metadata';
 import * as admin from 'firebase-admin';
-import * as serviceAccount from '../config/firebase.config.json';
 import { products } from './products.config';
+import { firebaseConfig } from '../firebase/firebase.config';
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
+  // to check whether this works
+  credential: admin.credential.cert(firebaseConfig),
 });
 
 const db = admin.firestore();
