@@ -40,3 +40,26 @@ pnpm nx g @nx/nest:service ./apps/api/src/product/product
 
 # see apps/api/src/product/product.service
 ```
+
+## 5. Create product resolver (GraphQL)
+
+```bash
+pnpm nx g @nx/nest:resolver ./apps/api/src/product/product
+
+# see apps/api/src/product/product.resolver
+```
+
+## 6. Register Product Module
+
+```bash
+pnpm nx g @nx/nest:module ./apps/api/src/product/product
+```
+
+- Import it in `AppModule`
+
+```ts
+@Module({
+  imports: [ProductModule],
+})
+export class AppModule {}
+```
