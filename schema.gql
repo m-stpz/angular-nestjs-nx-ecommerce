@@ -1,0 +1,20 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type ProductModel {
+  id: ID!
+  name: String!
+  description: String!
+  image: String!
+  price: Float!
+  stripePriceId: String!
+  isFeatured: Boolean!
+  createdAt: Float!
+  updatedAt: Float!
+}
+
+type Query {
+  products: [ProductModel!]!
+  product(id: String!): ProductModel
+}
