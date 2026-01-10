@@ -4,7 +4,7 @@
 pnpm add @nestjs/graphql @nestjs/apollo graphql apollo-server-express
 ```
 
-## 2. Enable GraphQL ins Nest
+## 2. Enable GraphQL in Nest
 
 ```ts
 // apps/api/src/app/app.module.ts
@@ -27,6 +27,16 @@ export class AppModule {}
 
 ## 3. Create Product GraphQL model (DTO)
 
+```bash
+pnpm nx g @nx/nest:class ./apps/api/src/product/product.model
+
+# see apps/api/src/product/product.model.ts
 ```
 
+## 4. Create product service
+
+```bash
+pnpm nx g @nx/nest:service ./apps/api/src/product/product
+
+# see apps/api/src/product/product.service
 ```
