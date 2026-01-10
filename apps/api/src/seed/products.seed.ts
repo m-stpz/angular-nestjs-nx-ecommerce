@@ -1,12 +1,17 @@
-import 'reflect-metadata';
+import 'dotenv/config';
 import * as admin from 'firebase-admin';
 import { products } from './products.config';
-import { firebaseConfig } from '../firebase/firebase.config';
 
-admin.initializeApp({
-  // to check whether this works
-  credential: admin.credential.cert(firebaseConfig),
-});
+if (admin.apps.length === 0) {
+  admin.initializeApp({
+    credential: admin.credential.cert({
+      projectId: process.env.FIREBASE_PROJECT_ID,
+      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+      privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+    }),
+    storageBucket: `${process.env.FIREBASE_PROJECT_ID}.appspot.com`,
+  });
+}
 
 const db = admin.firestore();
 

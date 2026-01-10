@@ -101,3 +101,27 @@ const firebaseProvider: Provider = {
 })
 export class FirebaseModule {}
 ```
+
+## Passing credentials to the seed
+
+```ts
+// apps/api/src/seed
+import 'dotenv/config';
+import * as admin from 'firebase-admin';
+import { products } from './products.config';
+
+if (admin.apps.length === 0) {
+  admin.initializeApp({
+    credential: admin.credential.cert({
+      projectId: process.env.FIREBASE_PROJECT_ID,
+      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+      privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+    }),
+    storageBucket: `${process.env.FIREBASE_PROJECT_ID}.appspot.com`,
+  });
+}
+```
+
+## Adding custom scripts to NX
+
+- Add the script on the the workspace `project.json`

@@ -1,9 +1,13 @@
-import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { Inject, Injectable } from '@nestjs/common';
+import { app } from 'firebase-admin';
 
 @Injectable()
 export class FirebaseService {
-  constructor(private readonly config: ConfigService) {}
+  #db: FirebaseFirestore.Firestore;
+  #products: FirebaseFirestore.CollectionReference;
 
-  apiKey = this.config.get<string>('FIREBASE_API_KEY'); // reading from the .env
+  constructor(@Inject('FIREBASE_APP') private firebaseApp: app.App) {
+    this.#db = firebaseApp.firestore();
+    this.#products = this.#db.collection('products');
+  }
 }

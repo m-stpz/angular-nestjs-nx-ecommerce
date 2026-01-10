@@ -5,6 +5,10 @@
   "projectType": "application",
   "tags": [],
   "targets": {
+    "seed:products": {
+      "executor": "nx:run-commands",
+      "options": { "command": "ts-node seed/products.seed.ts" }
+    },
     "build": {
       "executor": "nx:run-commands",
       "options": {
