@@ -11,6 +11,7 @@ import { ProductModule } from '../product/product.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      cache: true, // increases performance
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,

@@ -11,62 +11,6 @@ pnpm nx g @nx/nest:app apps/api # or apps/<any-name>
 pnpm nx serve api
 ```
 
-## Installing Firebase
-
-```
-pnpm install firebase-admin
-pnpm install firebase
-```
-
-### Reading values from .env
-
-- Go to the configurations of the project and get the config info
-
-1. Sensitive data should be added to the .env
-
-```ts
-const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
-};
-```
-
-2. Load .env on nestjs
-
-```ts
-// apps/api/src/app/app.module.ts
-import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-
-@Module({
-  imports: [
-    ConfigModule.forRoot({
-      isGlobal: true, // 👈 important
-    }),
-  ],
-})
-export class AppModule {}
-```
-
-3. Generate service within nx
-
-```bash
-npm nx g @nx/nest:service ./apps/api/src/firebase/firebase
-```
-
-4. Read it on the firebase service
-
-```ts
-import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-
-@Injectable()
-export class FirebaseService {
-  constructor(private readonly config: ConfigService) {}
-
-  apiKey = this.config.get<string>('FIREBASE_API_KEY'); // reading from the .env
-}
-```
-
 ## Generating commands
 
 - Since we're using nx, we shouldn't run `nest generate module <name>`. Why?
@@ -78,4 +22,82 @@ export class FirebaseService {
 ```bash
 pnpm nx g @nx/nest:module <path>
 pnpm nx g @nx/nest:module ./apps/api/src/firebase/firebase
+npm nx g @nx/nest:service ./apps/api/src/firebase/firebase
+
+```
+
+## Installing firebase on nestjs
+
+https://medium.com/@elangoram1998/getting-started-with-firebase-admin-in-nest-js-71f676e73e6
+
+- 1. Install deps
+
+```
+npm install firebase-admin @nestjs/config
+```
+
+- 2. Obtain admin sdk configuration
+
+- Project settings -> Service accounts
+- Click on "Generate new private key"
+- Transform the config.json into .env
+  - Add the .env at the root
+
+- 3. Allow the `ConfigModule` to load the environment variables
+
+```ts
+// apps/api/src/app/app.module.ts
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      cache: true, // increases performance
+    }),
+  ],
+})
+export class AppModule {}
+```
+
+- 4. Integrate Firebase admin into Nestjs
+
+```ts
+import { Module, Provider } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import * as admin from 'firebase-admin';
+
+const firebaseProvider: Provider = {
+  provide: 'FIREBASE_APP',
+  inject: [ConfigService],
+  useFactory: (configService: ConfigService) => {
+    const firebaseConfig = {
+      type: configService.get<string>('FIREBASE_TYPE'),
+      project_id: configService.get<string>('FIREBASE_PROJECT_ID'),
+      private_key_id: configService.get<string>('FIREBASE_PRIVATE_KEY_ID'),
+      private_key: configService.get<string>('FIREBASE_PRIVATE_KEY')?.replace(/\\n/g, '\n'),
+      client_email: configService.get<string>('FIREBASE_CLIENT_EMAIL'),
+      client_id: configService.get<string>('FIREBASE_CLIENT_ID'),
+      auth_uri: configService.get<string>('FIREBASE_AUTH_URI'),
+      token_uri: configService.get<string>('FIREBASE_TOKEN_URI'),
+      auth_provider_x509_cert_url: configService.get<string>('FIREBASE_AUTH_CERT_URL'),
+      client_x509_cert_url: configService.get<string>('FIREBASE_CLIENT_CERT_URL'),
+      universe_domain: configService.get<string>('FIREBASE_UNIVERSAL_DOMAIN'),
+    } as admin.ServiceAccount;
+
+    return admin.initializeApp({
+      credential: admin.credential.cert(firebaseConfig),
+      databaseURL: `https://${firebaseConfig.projectId}.firebaseio.com`,
+      storageBucket: `${firebaseConfig.projectId}.appspot.com`,
+    });
+  },
+};
+
+@Module({
+  providers: [firebaseProvider],
+  imports: [ConfigModule],
+  exports: [],
+})
+export class FirebaseModule {}
 ```

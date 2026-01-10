@@ -42,3 +42,4 @@ Thumbs.db
 .nx/workspace-data
 
 .env
+apps/api/src/firebase/firebase.config.json
