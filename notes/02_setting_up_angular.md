@@ -65,3 +65,9 @@ pnpm nx serve <ng-app-name>
   - Want webpack power without its slowness
   - Migrating large webpack projects
   - Enterprise-scale apps
+
+## Notes
+
+- It was a huge pain in the f\*cking a\*\* to setup angular within an existing nx repo
+- Many dependencies issues, many errors. A total fucking nightmare!
+- I was able to do it by installing first some previous versions of angular, then setting up some version limits on some libraries. Really annoying and painful.
