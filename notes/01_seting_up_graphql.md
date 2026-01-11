@@ -63,3 +63,39 @@ pnpm nx g @nx/nest:module ./apps/api/src/product/product
 })
 export class AppModule {}
 ```
+
+## 7. Testing the GraphQL setup
+
+- With the backend server running, access:
+
+```bash
+http://localhost:3000/graphql
+```
+
+- This runs apollo server, running inside nestjs via `@nestjs/apollo`
+
+## 8. Building queries in GraphQL
+
+```graphql
+query {
+  fieldName {
+    subField
+  }
+}
+
+query {
+  products {
+    id
+    name
+    price
+  }
+}
+
+query {
+  product(id: "123") {
+    id
+    name
+    description
+  }
+}
+```

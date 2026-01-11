@@ -43,3 +43,4 @@ Thumbs.db
 
 .env
 apps/api/src/firebase/firebase.config.json
+.angular
