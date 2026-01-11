@@ -5,27 +5,43 @@
   "scripts": {},
   "private": true,
   "devDependencies": {
+    "@angular-devkit/build-angular": "~20.3.0",
+    "@angular-devkit/core": "~20.3.0",
+    "@angular-devkit/schematics": "~20.3.0",
+    "@angular/cli": "~20.3.0",
+    "@angular/compiler-cli": "~20.3.0",
+    "@angular/language-service": "~20.3.0",
     "@eslint/js": "^9.8.0",
     "@nestjs/schematics": "^11.0.0",
     "@nestjs/testing": "^11.0.0",
+    "@nx/angular": "22.3.3",
+    "@nx/devkit": "22.3.3",
     "@nx/eslint": "22.3.3",
     "@nx/eslint-plugin": "22.3.3",
     "@nx/jest": "22.3.3",
     "@nx/js": "22.3.3",
     "@nx/nest": "22.3.3",
     "@nx/node": "22.3.3",
+    "@nx/playwright": "22.3.3",
     "@nx/web": "22.3.3",
     "@nx/webpack": "22.3.3",
     "@nx/workspace": "22.3.3",
+    "@playwright/test": "^1.36.0",
+    "@schematics/angular": "~20.3.0",
     "@swc-node/register": "~1.9.1",
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
     "@types/jest": "^30.0.0",
     "@types/node": "20.19.9",
+    "@typescript-eslint/utils": "^8.40.0",
+    "angular-eslint": "^20.3.0",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",
+    "eslint-plugin-playwright": "^1.6.2",
     "jest": "^30.0.2",
+    "jest-environment-jsdom": "^30.0.2",
     "jest-environment-node": "^30.0.2",
+    "jest-preset-angular": "~14.6.1",
     "jest-util": "^30.0.2",
     "nx": "22.3.3",
     "prettier": "~3.6.2",
@@ -37,6 +53,14 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "@angular/animations": "20.3.0",
+    "@angular/common": "20.3.0",
+    "@angular/compiler": "20.3.0",
+    "@angular/core": "20.3.0",
+    "@angular/forms": "20.3.0",
+    "@angular/platform-browser": "20.3.0",
+    "@angular/platform-browser-dynamic": "20.3.0",
+    "@angular/router": "20.3.0",
     "@apollo/server": "^5.2.0",
     "@as-integrations/express5": "^1.1.2",
     "@nestjs/apollo": "^13.2.3",
@@ -51,6 +75,13 @@
     "firebase-admin": "^13.6.0",
     "graphql": "^16.12.0",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.8.0"
+    "rxjs": "^7.8.0",
+    "zone.js": "^0.16.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "ora": "5.4.1",
+      "@angular/*": "20.3.0"
+    }
   }
 }
