@@ -6,6 +6,12 @@ pnpm nx g @nx/angular:app apps/<ng-app-name>
 pnpm nx serve <ng-app-name>
 ```
 
+> In case for some reason the workspace isn't in the correct place:
+
+```bash
+pnpm nx g @nx/workspace:move --project=client apps/client
+```
+
 ## Stylesheets
 
 - CSS, SCSS, Sass, Less are all possible ways to style

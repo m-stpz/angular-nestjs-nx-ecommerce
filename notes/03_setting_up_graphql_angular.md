@@ -37,11 +37,8 @@ export const graphqlProvider: ApplicationConfig['providers'] = [
 
 ```ts
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(appRoutes),
-    graphqlProvider, // add this
-  ],
+  providers: [provideBrowserGlobalErrorListeners(), provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(appRoutes), graphqlProvider],
 };
 ```
+
+### Fetching the data
