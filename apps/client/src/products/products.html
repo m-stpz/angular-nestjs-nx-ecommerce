@@ -1,0 +1,19 @@
+<!-- apps/client/src/app/products/products.component.html -->
+<h2>hey</h2>
+
+<mat-grid-list cols="4" gutterSize="16px" rowHeight="1:1">
+  <mat-grid-tile *ngFor="let product of products$ | async">
+    <mat-card>
+      <img mat-card-image [src]="product?.image" [alt]="product?.name" />
+
+      <mat-card-content>
+        <h3>{{ product?.name }}</h3>
+        <p>€{{ product?.price }}</p>
+
+        <mat-chip *ngIf="product?.isFeatured" color="primary">
+          Featured
+        </mat-chip>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

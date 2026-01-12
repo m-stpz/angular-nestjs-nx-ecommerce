@@ -41,4 +41,8 @@ export const appConfig: ApplicationConfig = {
 };
 ```
 
-### Fetching the data
+### Creating an Angular component through generator
+
+```bash
+pnpm nx g @nx/angular:component apps/client/src/products/products
+```
