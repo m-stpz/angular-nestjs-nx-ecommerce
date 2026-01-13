@@ -1,7 +1,7 @@
 <h2>this is the products</h2>
 
 <mat-grid-list cols="4" gutterSize="16px" rowHeight="1:1">
-  <mat-grid-tile *ngFor="let product of products$ | async">
+  <mat-grid-tile *ngFor="let product of (products$ | async)">
     <mat-card>
       <img mat-card-image [src]="product?.image" [alt]="product?.name" />
 
