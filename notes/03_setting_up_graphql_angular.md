@@ -41,8 +41,13 @@ export const appConfig: ApplicationConfig = {
 };
 ```
 
-### Creating an Angular component through generator
+### Creating an Angular elements through generator
 
 ```bash
+# component
 pnpm nx g @nx/angular:component apps/client/src/products/products
+
+# service
+pnpm nx g @nx/angular:service <name> --project=<project> --path=<path>
+pnpm nx g @nx/angular:service products.service --project=client --path=apps/client/src/products
 ```
