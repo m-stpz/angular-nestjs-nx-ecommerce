@@ -7,13 +7,12 @@ import { Apollo } from 'apollo-angular';
 import { Product } from './product.model';
 import { FETCH_PRODUCTS } from '../app/graphql/queries';
 import { tap, map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.html',
   styleUrl: './products.css',
-  standalone: true, // why standalone?
+  standalone: true, // new type of angular components that doesn't need to be declared in a `NgModule`
   imports: [CommonModule, MatCardModule, MatGridListModule, MatChipsModule],
 })
 export class Products {
