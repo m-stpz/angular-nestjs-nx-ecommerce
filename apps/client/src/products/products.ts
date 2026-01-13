@@ -17,27 +17,16 @@ import { HttpClient } from '@angular/common/http';
   imports: [CommonModule, MatCardModule, MatGridListModule, MatChipsModule],
 })
 export class Products {
-  // private readonly apollo = inject(Apollo);
+  private readonly apollo = inject(Apollo);
 
-  // products$ = this.apollo
-  //   .watchQuery<{ products: Product[] }>({
-  //     query: FETCH_PRODUCTS,
-  //   })
-  //   .valueChanges.pipe(
-  //     tap((result) => {
-  //       console.log('Apollo raw result:', result);
-  //     }),
-  //     map((result) => result.data?.products),
-  //   );
-
-  private readonly http = inject(HttpClient);
-
-  ngOnInit() {
-    this.http
-      .get('http://localhost:3000/graphql?query={products{id name price}}')
-      .subscribe({
-        next: (res) => console.log('HTTP RESULT', res),
-        error: (err) => console.error('HTTP ERROR', err),
-      });
-  }
+  products$ = this.apollo
+    .watchQuery<{ products: Product[] }>({
+      query: FETCH_PRODUCTS,
+    })
+    .valueChanges.pipe(
+      tap((result) => {
+        console.log('Apollo raw result:', result);
+      }),
+      map((result) => result.data?.products),
+    );
 }
