@@ -1,6 +1,6 @@
-## Fetching data Angular Graphql
+# Fetching data Angular Graphql
 
-### GET
+## GET
 
 - Data fetching should happen within a service, not a component
 
@@ -52,11 +52,15 @@ Angular (apollo)
                 -> Firebase
 ```
 
-### Data flow (Top to Bottom)
+## Data flow (Top to Bottom)
 
 1. Angular `Products` component
    - Displays data
    - Knows nothing of GraphQL, Firebase or NestJS
    - Just subscribes to an `Observable<Product[]>`
 
-=== TO CONTINUE ===
+```ts
+products$ =
+```
+
+to continue
