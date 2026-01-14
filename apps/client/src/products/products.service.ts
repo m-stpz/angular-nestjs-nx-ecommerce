@@ -15,6 +15,7 @@ export class ProductsService {
       .watchQuery<{ products: Product[] }>({
         query: FETCH_PRODUCTS,
       })
-      .valueChanges.pipe(map((result) => result.data?.products));
+      .valueChanges // this returns Observable<ApolloQueryResult<{products:Product[]}>>
+      .pipe(map((result) => result.data?.products));
   }
 }

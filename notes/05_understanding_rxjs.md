@@ -40,5 +40,27 @@ products$ = this.productsService.getProducts();
 
 - Both are used for async, however, the differ:
 
-| Feature | Observable | Promise |
-| ------- | ---------- | ------- |
+| Feature         | Observable                                     | Promise                                     |
+| --------------- | ---------------------------------------------- | ------------------------------------------- |
+| Multiple values | Can emit them over time                        | Emits a single value (resolved or rejected) |
+| Lazy execution  | Starts only when subscribed                    | Starts immediately when defined             |
+| Cancelation     | Supports cancelation via `unsubscribe()`       | Can't be canceled once started              |
+| Operators       | Supports powerful operators for transformation | Limited functionality                       |
+
+- Observables are more flexible than Promises. They allow:
+  - Multiple scenarios: good for data updates
+  - Lazy execution: you can control when they start
+  - Cancelation: unsub when data isn't needed
+
+- They are like what `useEffect` does to keep data in sync
+
+## RxJS and Observables
+
+- RxJS is the implementation + tooling around Observables
+- It provides:
+  - `Observable` class
+  - Creation functions: of, from, interval, fromEvent
+  - Operators: map, filter, switchMap, catchErrors
+  - Schedulers
+  - Subjects
+- Angular's async model is built on RxJS

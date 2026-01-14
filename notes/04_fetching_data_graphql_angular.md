@@ -33,6 +33,9 @@ watchQuery() // keep the query updated
 
 - `watchQuery`: run this query and keep it in sync with Apollo cache
   - automatic refetch on: cache updates, mutations, refetch calls
+  - creates a reactive GraphQL query
+  - returns a QueryRef
+  - "Describe what to watch"
 - `valueChanges`: watchQuery returns a QueryRef, not data. So, we need valueChanges to consume the data
 - `pipe`: apollo emits more than just data
 

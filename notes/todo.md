@@ -6,8 +6,13 @@
 ## Angular
 
 - [x] setup Angular inside Nx
-- [ ] build graphql queries on Angular
-- [ ] be able to fetch data from nestjs backend
+- [x] build graphql queries on Angular
+- [x] be able to fetch data from nestjs backend
 - [ ] have search functionality
 - [ ] have pagination functionality
 - [ ] be able to make an order
+
+## Learnings
+
+- [ ] Learn more about `Observables`
+- [ ] Learn more about RxJS
