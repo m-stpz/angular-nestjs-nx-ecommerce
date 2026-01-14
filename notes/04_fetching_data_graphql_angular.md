@@ -57,13 +57,90 @@ Angular (apollo)
 
 ## Data flow (Top to Bottom)
 
-1. Angular `Products` component
+```txt
+Angular Product component: Renders data
+  ↓
+Angular Product service: How to fetch the data from the backend and send it to the component in a friendly format
+  ↓
+Apollo Client: Executes GraphQL operations, manages cache
+  ↓
+GraphQL API (schema + query): Defines WHAT can be fetched, the API contract
+  ↓
+ProductResolver: Maps the query to the backend logic. The traffic controller
+  ↓
+ProductService.findAll(): Data access + business rules, the brain. It's where the business logic should live
+  ↓
+Firebase: the db
+```
+
+Ng Product Component -> Ng ProductService -> GraphQL Query Product -> NestJS Product Resolver -> NestJS Product service -> NestJS Firebase service
+
+1. Angular `Products` component: What to do with the data
    - Displays data
    - Knows nothing of GraphQL, Firebase or NestJS
    - Just subscribes to an `Observable<Product[]>`
 
 ```ts
-products$ =
+// it's a convention if it's an observable, to add <variable>$ -- the dollar sign at the end
+// the `$` means: this is an Observable, not a value
+products$ = this.productsService.getProducts();
 ```
 
-to continue
+2. Angular `ProductsService`: Get the data and return it into a friendly-format
+
+- Talks to GraphQL
+- Hides Apollo details
+- Converts GraphQL shape into -> Product[]
+
+```
+watchQuery -> valueChanges -> map(...)
+```
+
+3. GraphQL Query: API contract
+
+- Defines the required data
+- No logic
+- No db access
+
+```
+query {
+  products {
+    id
+    name
+    price
+  }
+}
+```
+
+4. NestJS ProductResolver: Traffic controller
+
+- Entry point for GraphQL
+- Maps GraphQL query -> service call
+- No business logic
+
+```ts
+@Query(() => [ProductModel])
+products(){
+  return this.productService.findAll();
+}
+```
+
+5. NestJS ProductService: The brain
+
+- Knows Firebase
+- Fetches documents
+- Maps Firestore -> domain objects
+- Central place for business rules
+
+```ts
+async findAll() {...}
+```
+
+6. Firebase: the db
+
+- Stores data
+- No knowledge of GraphQL or Angular
+
+```ts
+this.products.get();
+```
