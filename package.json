@@ -44,6 +44,7 @@
     "jest-preset-angular": "~14.6.1",
     "jest-util": "^30.0.2",
     "nx": "22.3.3",
+    "parse5": "^7.3.0",
     "prettier": "~3.6.2",
     "ts-jest": "^29.4.0",
     "ts-node": "10.9.1",
@@ -84,7 +85,8 @@
   },
   "pnpm": {
     "overrides": {
-      "ora": "5.4.1"
+      "ora": "5.4.1",
+      "parse5": "7.1.2"
     }
   }
 }
