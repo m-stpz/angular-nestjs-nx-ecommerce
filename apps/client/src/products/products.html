@@ -1,5 +1,4 @@
-@if (products$ | async; as products){
-
+@if (products(); as products){
 <mat-grid-list cols="3">
   @for (product of products; track product?.id){
   <mat-grid-tile>

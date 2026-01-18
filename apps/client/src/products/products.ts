@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatChipsModule } from '@angular/material/chips';
 import { ProductsService } from './products.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-products',
@@ -15,5 +16,5 @@ import { ProductsService } from './products.service';
 export class Products {
   private readonly productsService = inject(ProductsService);
 
-  readonly products$ = this.productsService.getProducts();
+  readonly products = toSignal(this.productsService.getProducts());
 }
