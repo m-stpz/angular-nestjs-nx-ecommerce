@@ -138,3 +138,32 @@ if (admin.apps.length === 0) {
     // ...
 }
 ```
+
+## NX List
+
+- It shows what a specific plugin provides to your workspace
+  - What generators and executors does this plugin have?
+
+```bash
+pnpm nx list <plugin>
+pnpm nx list @nx/angular
+  # generators
+  # executors
+```
+
+### Generators
+
+- Things you can scaffold: application, library, component, service, module, directive
+
+```bash
+pnpm nx g @nx/angular:component
+pnpm nx g @nx/angular:app
+```
+
+### Executors
+
+- This can be run: build, servce, test, lint
+
+```bash
+pnpm nx serve client
+```
