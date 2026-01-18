@@ -1,18 +1,19 @@
-<h2>this is the products</h2>
+@if (products$ | async; as products){
 
-<mat-grid-list cols="4" gutterSize="16px" rowHeight="1:1">
-  <mat-grid-tile *ngFor="let product of (products$ | async)">
+<mat-grid-list cols="3">
+  @for (product of products; track product?.id){
+  <mat-grid-tile>
     <mat-card>
-      <img mat-card-image [src]="product?.image" [alt]="product?.name" />
+      <h3>{{product?.name}}</h3>
+      <p>€{{product?.price}}</p>
 
-      <mat-card-content>
-        <h3>{{ product?.name }}</h3>
-        <p>€{{ product?.price }}</p>
-
-        <mat-chip *ngIf="product?.isFeatured" color="primary">
-          Featured
-        </mat-chip>
-      </mat-card-content>
+      @if (product?.isFeatured){
+      <mat-chip color="primary">Featured</mat-chip>
+      }
     </mat-card>
   </mat-grid-tile>
+  }
 </mat-grid-list>
+} @else {
+<p>Loading products...</p>
+}
