@@ -1,0 +1,11 @@
+.container {
+  max-width: 80%;
+  margin: auto;
+  padding: 1rem;
+}
+
+.child-container {
+  display: 'flex';
+  flex-direction: 'column';
+  gap: 30px;
+}
